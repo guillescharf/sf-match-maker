@@ -4,5 +4,11 @@
   box-sizing: border-box;
 }
 .App {
-  text-align: center;
+  width: 100vw;
+  min-height: 100vh;
+  
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
