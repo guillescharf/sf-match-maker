@@ -28,14 +28,14 @@ const Participants = [
 
     },
     {
-        "id": "asd6a89s7dsdf6asd86",
+        "id": "asd6a8asdf6asd86",
         "name": "nombre del 5",
         "email": "asdasd@asd.com",
         "skills": ["habilidad 5", "habilidad 4"]
 
     },
     {
-        "id": "asd6a89s7dsdf6asd86",
+        "id": "asd6a89s7dsdasdasdasdf6asd86",
         "name": "nombre del 6",
         "email": "asdasd@asd.com",
         "skills": ["habilidad 3", "habilidad 4"]
@@ -84,21 +84,63 @@ const cantGroupsFromParticipants = (totalParticipants, participantsPerGroup) => 
 
 * @param {String} skillToSearch Skill to be Found
 
-* @return {Array} Return an array, with all the participants who has the specified skill
+* @return {Array} Return two arrays, one with participants with the desired skiill, and other with the rest of participants. 
 
 */
 const findBySkill = (participants, skillToSearch) => {    
+    let participantsWithSkill = [];
+    let participantsWitoutSkill = [];
     if((participants.length > 0) && skillToSearch.trim() !==''){
-        const searchResult = participants.filter(participant => (participant.skills.find(skill => skill === skillToSearch)));
-        console.log("tiene valores", searchResult);
-        console.log("lo que quedo en el Array", participants);
-        return searchResult;
+        participants.forEach(participant => {
+            if(participant.skills.find(skill => skill === skillToSearch)){
+                participantsWithSkill = [...participantsWithSkill, participant];
+            }else{
+                participantsWitoutSkill = [...participantsWitoutSkill, participant];
+            }
+        });
+
+        //console.log("los que tienen", participantsWithSkill);
+        //console.log("los que no la tienen", participantsWitoutSkill);
+        return [participantsWithSkill, participantsWitoutSkill];
     }else{
-        const searchResult = [];
         //console.log("no entro a la busqueda");
-        return searchResult;
+        return [[],[]];
     }    
 }
+
+/**
+
+* Distribute participants in groups 
+
+* @param {array} headsOfGroups Participants with desired skills
+
+* @param {array} restOfParticipants All other participants to distribute
+
+* @param {integer} groupsQty The amount of groups desired
+
+* @return {array} Return an array with groups distribution
+
+*/
+
+const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) => {
+    let finalGroups = [];
+    for(let i=0; i < groupsQty; i++){
+        finalGroups[i] = [];
+    }
+    console.log("heads", headsOfGroups);
+    const allParticipants = [...headsOfGroups,...restOfParticipants];
+    console.log(allParticipants);
+    let actualGroup = 0;
+    while (allParticipants.length>0){
+        console.log(allParticipants); 
+        finalGroups[actualGroup].push(allParticipants.shift());
+        actualGroup++;
+        (actualGroup === (groupsQty)) && (actualGroup = 0);   
+    }
+    console.log("grupos finales", finalGroups);
+
+}
+
 
 /**
 
@@ -110,11 +152,13 @@ const findBySkill = (participants, skillToSearch) => {
 
 * @param {String} skillDesired The principal skill to split in group
 
-* @return {array} Return an array of arrays with groups information
+* @return {array} Return an array with groups information
 
 */
 const createGroups = (participants, groupsQty, skillDesired) => {
-    const headsOfGroups = findBySkill(participants, skillDesired);
+
+    const [headsOfGroups, restOfParticipants] = findBySkill(participants, skillDesired);
+    // Evaluate if there are enought head of group for the groups quantity desired
     if(headsOfGroups.length >= groupsQty){
         console.log("Hay suficientes participantes con la habilidad principal");
         // se comensaria con la reparticion de participantes por grupo
@@ -122,8 +166,11 @@ const createGroups = (participants, groupsQty, skillDesired) => {
         console.log("No alcanzan los participantes con la habilidad requerida");
         // aca habria que consultar si quiere reducir la cantidad de grupos segun los head o groups o seguir igual
     }
+
+    console.log("algo");
+    distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
 }
 
-createGroups(Participants, 3, 'habilidad 4');
+createGroups(Participants, 4, 'habilidad 4');
 //console.log("Resultado:", findBySkill() (Participants, "habilidad 7"));
 //consol.log(cantGroupsFromParticipants(43,5))
