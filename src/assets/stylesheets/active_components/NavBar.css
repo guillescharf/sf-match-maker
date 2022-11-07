@@ -1,0 +1,30 @@
+.navbar {
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0;
+}
+
+
+.navbar,
+.container-fluid {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    align-content: center;
+    background-color: blueviolet;
+}
+
+
+.logo {
+    width: 25%;
+}
+span {
+    color: #000000;
+    padding-left: 1rem;
+}
+
+.nav-link, .route {
+    text-decoration: none;
+    color: #000000;
+}
