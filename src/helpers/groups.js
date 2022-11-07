@@ -57,9 +57,16 @@ const Participants = [
     }            
 ]
 
-console.log("participantes:", Participants);
-console.log("habilidades:", skills);
+/**
 
+* Randomize an array
+
+* @param {array} inputArray Array to be randomized
+
+*/
+function shuffleArray(inputArray){
+    inputArray.sort(()=> Math.random() - Math.random());
+}
 
 /**
 
@@ -121,13 +128,13 @@ const findBySkill = (participants, skillToSearch) => {
 * @return {array} Return an array with groups distribution
 
 */
-
 const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) => {
     let finalGroups = [];
     for(let i=0; i < groupsQty; i++){
         finalGroups[i] = [];
     }
     console.log("heads", headsOfGroups);
+   shuffleArray(restOfParticipants);
     const allParticipants = [...headsOfGroups,...restOfParticipants];
     console.log(allParticipants);
     let actualGroup = 0;
@@ -137,10 +144,9 @@ const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) =>
         actualGroup++;
         (actualGroup === (groupsQty)) && (actualGroup = 0);   
     }
-    console.log("grupos finales", finalGroups);
+    return finalGroups;
 
 }
-
 
 /**
 
@@ -168,9 +174,11 @@ const createGroups = (participants, groupsQty, skillDesired) => {
     }
 
     console.log("algo");
-    distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
+    return distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
 }
 
-createGroups(Participants, 4, 'habilidad 4');
+const finalGroups = createGroups(Participants, 2, 'habilidad 5');
+console.log("grupos finales", finalGroups);
+
 //console.log("Resultado:", findBySkill() (Participants, "habilidad 7"));
 //consol.log(cantGroupsFromParticipants(43,5))
