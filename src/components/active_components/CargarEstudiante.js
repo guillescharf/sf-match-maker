@@ -10,7 +10,7 @@ const CargarEstudiante = () =>{
                 
                 
                     <label htmlFor="email">Email</label>
-                    <input className='est-text' type='text' name="email" placeholder='estudiante@skill.com'/>
+                    <input className='est-text' type='text' name="email" placeholder='estudiante@matchmaker.com'/>
                 
                     <a href="/"><button type='submit' className="bn632-hover bn19">Cargar</button></a>            </form>
             <p className='texto-recordatorio'>

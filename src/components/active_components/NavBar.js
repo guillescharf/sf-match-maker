@@ -16,10 +16,12 @@ function NavBar() {
             {['lg'].map((expand) => (
                 <Navbar key={expand} bg="light" expand={expand} className="mb-3">
                     <Container fluid>
-                        <Navbar.Brand to="/">
-                            <img src={equipo} alt="" className='logo' />
-                            <span>SF Match Maker</span>
-                        </Navbar.Brand>
+                        <Link to="/">
+                            <Navbar.Brand href="#">
+                                <img src={equipo} alt="" className='logo' />
+                                <span>SF Match Maker</span>
+                            </Navbar.Brand>
+                        </Link>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
