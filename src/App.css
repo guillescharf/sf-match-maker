@@ -4,11 +4,15 @@
   box-sizing: border-box;
 }
 .App {
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  min-height: 100%;
   
-
+  background: -webkit-linear-gradient(rgb(247, 131, 14), rgb(250, 179, 191), rgb(179, 233, 250));
+  background: -moz-linear-gradient(rgb(247, 131, 14), rgb(250, 179, 191),  rgb(179, 233, 250));
+  background: -o-linear-gradient(rgb(247, 131, 14), rgb(250, 179, 191), rgb(179, 233, 250));
+  background: linear-gradient(rgb(247, 131, 14), rgb(250, 179, 191),  rgb(179, 233, 250));
+  
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
