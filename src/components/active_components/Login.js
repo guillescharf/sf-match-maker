@@ -1,15 +1,15 @@
 import { useState } from "react";
-import firebaseApp from "../../firebase/firebase";
+/* import firebaseApp from "../../firebase/firebase";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-} from "firebase/auth";
+} from "firebase/auth"; */
 
 
 const Login = () => {
-    const [isRegistered, setIsRegistered] = useState(false);
+   /*  const [isRegistered, setIsRegistered] = useState(false);
 
     const firestore = getFirestore(firebaseApp);
     const auth = getAuth(firebaseApp);
@@ -78,7 +78,7 @@ const Login = () => {
                     : "¿No tenés cuenta? Registrate"}
             </button>
         </div>
-    )
+    ) */
 }
 
 export default Login;
