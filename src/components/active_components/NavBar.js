@@ -8,6 +8,9 @@ import equipo from '../../assets/image/equipo.png'
 import '../../assets/stylesheets/active_components/NavBar.css';
 
 function NavBar() {
+
+
+
     return (
         <>
             {['lg'].map((expand) => (
