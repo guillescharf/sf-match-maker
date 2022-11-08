@@ -57,9 +57,16 @@ const Participants = [
     }            
 ]
 
-console.log("participantes:", Participants);
-console.log("habilidades:", skills);
+/**
 
+* Randomize an array
+
+* @param {array} inputArray Array to be randomized
+
+*/
+function shuffleArray(inputArray){
+    inputArray.sort(()=> Math.random() - Math.random());
+}
 
 /**
 
@@ -98,13 +105,9 @@ const findBySkill = (participants, skillToSearch) => {
                 participantsWitoutSkill = [...participantsWitoutSkill, participant];
             }
         });
-
-        //console.log("los que tienen", participantsWithSkill);
-        //console.log("los que no la tienen", participantsWitoutSkill);
         return [participantsWithSkill, participantsWitoutSkill];
     }else{
-        //console.log("no entro a la busqueda");
-        return [[],[]];
+        return [[],participants];
     }    
 }
 
@@ -121,26 +124,21 @@ const findBySkill = (participants, skillToSearch) => {
 * @return {array} Return an array with groups distribution
 
 */
-
 const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) => {
     let finalGroups = [];
     for(let i=0; i < groupsQty; i++){
         finalGroups[i] = [];
     }
-    console.log("heads", headsOfGroups);
+   shuffleArray(restOfParticipants);
     const allParticipants = [...headsOfGroups,...restOfParticipants];
-    console.log(allParticipants);
     let actualGroup = 0;
     while (allParticipants.length>0){
-        console.log(allParticipants); 
         finalGroups[actualGroup].push(allParticipants.shift());
         actualGroup++;
         (actualGroup === (groupsQty)) && (actualGroup = 0);   
     }
-    console.log("grupos finales", finalGroups);
-
+    return finalGroups;
 }
-
 
 /**
 
@@ -150,12 +148,12 @@ const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) =>
 
 * @param {integer} groupsQty Quantioty of groups to be created
 
-* @param {String} skillDesired The principal skill to split in group
+* @param {String} skillDesired The principal skill to split in group (Allow empty string to generate ranom groups)
 
 * @return {array} Return an array with groups information
 
 */
-const createGroups = (participants, groupsQty, skillDesired) => {
+const createGroups = (participants, groupsQty, skillDesired ='') => {
 
     const [headsOfGroups, restOfParticipants] = findBySkill(participants, skillDesired);
     // Evaluate if there are enought head of group for the groups quantity desired
@@ -168,9 +166,11 @@ const createGroups = (participants, groupsQty, skillDesired) => {
     }
 
     console.log("algo");
-    distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
+    return distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
 }
 
-createGroups(Participants, 4, 'habilidad 4');
+const finalGroups = createGroups(Participants, 2);
+console.log("grupos finales", finalGroups);
+
 //console.log("Resultado:", findBySkill() (Participants, "habilidad 7"));
 //consol.log(cantGroupsFromParticipants(43,5))
