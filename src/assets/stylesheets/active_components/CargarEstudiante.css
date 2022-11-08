@@ -83,3 +83,8 @@
 
     color: white;
 }
+
+.check-habilidades{
+    display: flex;
+    flex-direction: column;
+}
