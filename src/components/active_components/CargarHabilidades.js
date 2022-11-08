@@ -6,7 +6,7 @@ const CargarHabilidades = () =>{
 
             <form className="form-habilidades">
                 <input className='input-habilidad' type="text" placeholder="Habilidad..." autoComplete="false"/>
-                <input className='input-cargar' type="submit" value="Cargar"/>
+                <a href="/"><button type='submit' className="bn632-hover bn19">Cargar</button></a>
             </form>
 
             <div className="habilidades-en-db">

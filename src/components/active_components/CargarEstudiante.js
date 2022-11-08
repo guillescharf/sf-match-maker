@@ -12,8 +12,7 @@ const CargarEstudiante = () =>{
                     <label htmlFor="email">Email</label>
                     <input className='est-text' type='text' name="email" placeholder='estudiante@skill.com'/>
                 
-                <input className='btn-cargar' type='submit' value="Cargar"/>
-            </form>
+                    <a href="/"><button type='submit' className="bn632-hover bn19">Cargar</button></a>            </form>
             <p className='texto-recordatorio'>
                 Tambien se podría agregar que cuando se
                 carga el estudiante se inicialice cons

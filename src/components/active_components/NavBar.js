@@ -8,12 +8,15 @@ import equipo from '../../assets/image/equipo.png'
 import '../../assets/stylesheets/active_components/NavBar.css';
 
 function NavBar() {
+
+
+
     return (
         <>
             {['lg'].map((expand) => (
                 <Navbar key={expand} bg="light" expand={expand} className="mb-3">
                     <Container fluid>
-                        <Navbar.Brand href="#">
+                        <Navbar.Brand to="/">
                             <img src={equipo} alt="" className='logo' />
                             <span>SF Match Maker</span>
                         </Navbar.Brand>
