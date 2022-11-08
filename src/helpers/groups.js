@@ -105,13 +105,9 @@ const findBySkill = (participants, skillToSearch) => {
                 participantsWitoutSkill = [...participantsWitoutSkill, participant];
             }
         });
-
-        //console.log("los que tienen", participantsWithSkill);
-        //console.log("los que no la tienen", participantsWitoutSkill);
         return [participantsWithSkill, participantsWitoutSkill];
     }else{
-        //console.log("no entro a la busqueda");
-        return [[],[]];
+        return [[],participants];
     }    
 }
 
@@ -133,19 +129,15 @@ const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) =>
     for(let i=0; i < groupsQty; i++){
         finalGroups[i] = [];
     }
-    console.log("heads", headsOfGroups);
    shuffleArray(restOfParticipants);
     const allParticipants = [...headsOfGroups,...restOfParticipants];
-    console.log(allParticipants);
     let actualGroup = 0;
     while (allParticipants.length>0){
-        console.log(allParticipants); 
         finalGroups[actualGroup].push(allParticipants.shift());
         actualGroup++;
         (actualGroup === (groupsQty)) && (actualGroup = 0);   
     }
     return finalGroups;
-
 }
 
 /**
@@ -156,12 +148,12 @@ const distributeParticipants = (headsOfGroups, restOfParticipants, groupsQty) =>
 
 * @param {integer} groupsQty Quantioty of groups to be created
 
-* @param {String} skillDesired The principal skill to split in group
+* @param {String} skillDesired The principal skill to split in group (Allow empty string to generate ranom groups)
 
 * @return {array} Return an array with groups information
 
 */
-const createGroups = (participants, groupsQty, skillDesired) => {
+const createGroups = (participants, groupsQty, skillDesired ='') => {
 
     const [headsOfGroups, restOfParticipants] = findBySkill(participants, skillDesired);
     // Evaluate if there are enought head of group for the groups quantity desired
@@ -177,7 +169,7 @@ const createGroups = (participants, groupsQty, skillDesired) => {
     return distributeParticipants(headsOfGroups, restOfParticipants, groupsQty);
 }
 
-const finalGroups = createGroups(Participants, 2, 'habilidad 5');
+const finalGroups = createGroups(Participants, 2);
 console.log("grupos finales", finalGroups);
 
 //console.log("Resultado:", findBySkill() (Participants, "habilidad 7"));
