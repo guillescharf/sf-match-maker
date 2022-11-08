@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import DetalleGrupo from "./DetalleGrupo";
+
 
 const ArmarGrupos = () =>{
 
@@ -215,6 +217,8 @@ const ArmarGrupos = () =>{
            
     }
 
+    let groupNumber = 1;
+
   //  const finalGroups = createGroups(Participants, 2);
     //console.log("grupos finales", finalGroups);    
     return(
@@ -254,6 +258,16 @@ const ArmarGrupos = () =>{
                 <div>  
 
                 </div>
+                {
+                    groupsList.map((CurrentGroup) => {                        
+                        return(
+                            <div className="card text-white bg-primary mb-3 mt-3" >
+                                <div className="card-header text-center">Grupo numero: {groupNumber++} </div>                                
+                                <DetalleGrupo group={CurrentGroup}  />
+                            </div>
+                        )
+                        })
+                }
         </div>
     )
 }
