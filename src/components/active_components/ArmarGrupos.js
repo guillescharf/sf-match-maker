@@ -1,9 +1,11 @@
 import { useState } from "react";
-
 import DetalleGrupo from "./DetalleGrupo";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const ArmarGrupos = () =>{
+
+    const MySwal = withReactContent(Swal);
 
         // Datos hardcodeados para pruebas
     const skills = [
@@ -70,6 +72,7 @@ const ArmarGrupos = () =>{
     const [skillSelected, setSkillSelected] = useState('');
     const [cantOf, setCantOf] = useState('groups');
     const [groupsList, setGroupsList] = useState([]);
+    //const [generateGroups, setGenerateGroups] = useState(false);
 
     /**
     
@@ -170,25 +173,24 @@ const ArmarGrupos = () =>{
     */
     const createGroups = (participants, groupsQty, skillDesired = '') => {
 
-        console.log("participants: ", participants, "cantidad de grupos:", groupsQty , "habilidad: " , skillDesired);
-
         const [headsOfGroups, restOfParticipants] = findBySkill(participants, skillDesired);
         // Evaluate if there are enought head of group for the groups quantity desired
-        if (headsOfGroups.length >= groupsQty) {
-            console.log("Hay suficientes participantes con la habilidad principal");
-            // se comensaria con la reparticion de participantes por grupo
-        } else {
-            console.log("No alcanzan los participantes con la habilidad requerida");
-            // aca habria que consultar si quiere reducir la cantidad de grupos segun los head o groups o seguir igual
-        }
 
-        console.log("algo");
-        return distributeParticipants(headsOfGroups, restOfParticipants, parseInt(groupsQty));
+        if ((headsOfGroups.length < groupsQty) &&  (skillDesired !=='')) {
+            confirmGroupsWithoutSkill(headsOfGroups, restOfParticipants, parseInt(groupsQty));
+            return([]);
+                      
+        } else{
+            return distributeParticipants(headsOfGroups, restOfParticipants, parseInt(groupsQty)) ;       
+        }
+        //console.log(generateGroups);
+
+        
+        
     }
 
     const handleChange = (ev) => {
         const { name, value } = ev.target;
-        //console.log(value);
 
         switch(name){
             case 'InstanceName':{
@@ -217,10 +219,27 @@ const ArmarGrupos = () =>{
            
     }
 
+    const  confirmGroupsWithoutSkill = (headsOfGroups, restOfParticipants, groupsQty) => {//Funcion para usar sweet alert con boton de cancelar y de aceptar
+        MySwal.fire({
+            title: 'No hay tantos integrantes con la habilidad deseada!',
+            text: `Solo hay ${headsOfGroups.length} participantes con la habilidad seleccionada! \n Desea continuar de todas formas?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, continuar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setGroupsList(distributeParticipants(headsOfGroups, restOfParticipants, parseInt(groupsQty)) ); 
+            }else{
+                return false;
+            }
+        })
+    }    
+
     let groupNumber = 1;
 
-  //  const finalGroups = createGroups(Participants, 2);
-    //console.log("grupos finales", finalGroups);    
     return(
         <div className="container">
                 <form>
@@ -233,8 +252,8 @@ const ArmarGrupos = () =>{
                              <div className="col-md-4 mb-3">
                         <label htmlFor="cant">Cantidad de :</label>
                         <input  type="number" name="cant" id="cant" onChange={handleChange}  /> &nbsp;
-                        <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" onChange={handleChange} name="cantOf">
-                            <option selected value="groups">Grupos</option>
+                        <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" onChange={handleChange} name="cantOf" value={cantOf}>
+                            <option value="groups">Grupos</option>
                             <option value="persons">Integrantes por grupo</option>
                         </select>
                         </div>
