@@ -1,0 +1,41 @@
+.estudiantes-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+}
+
+.estudiante{
+    background-color: rgb(42, 42, 148);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    width: 90vw;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1px 0px 5px;
+    margin-bottom: 3px;
+}
+.btn-delete-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+
+
+.skill-listada{
+    background-color: rgb(122, 0, 112);
+    margin-bottom: 3px;
+    
+    margin-left: 15px;
+    border-radius: 5px;
+    padding-left: 5px;
+    color: white;
+    
+}
