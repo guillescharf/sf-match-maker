@@ -7,7 +7,7 @@ const ArmarGrupos = () =>{
 
     const MySwal = withReactContent(Swal);
 
-        // Datos hardcodeados para pruebas
+    // Datos hardcodeados para pruebas
     const skills = [
         {
             "id": "001",
@@ -71,8 +71,8 @@ const ArmarGrupos = () =>{
     const [cant, setCant] = useState(1);
     const [skillSelected, setSkillSelected] = useState('');
     const [cantOf, setCantOf] = useState('groups');
+    const [groupInfo, setGroupInfo] = useState({});
     const [groupsList, setGroupsList] = useState([]);
-    //const [generateGroups, setGenerateGroups] = useState(false);
 
     /**
     
@@ -154,7 +154,6 @@ const ArmarGrupos = () =>{
             actualGroup++;
             (actualGroup === (groupsQty)) && (actualGroup = 0);
         }
-        console.log("distributeParticipants:", finalGroups );
         return finalGroups;
     }
 
@@ -165,33 +164,27 @@ const ArmarGrupos = () =>{
     * @param {array} participants Total amount of participants to split in groups
     
     * @param {integer} groupsQty Quantioty of groups to be created
-    
+
     * @param {String} skillDesired The principal skill to split in group (Allow empty string to generate ranom groups)
     
     * @return {array} Return an array with groups information
     
     */
     const createGroups = (participants, groupsQty, skillDesired = '') => {
-
         const [headsOfGroups, restOfParticipants] = findBySkill(participants, skillDesired);
-        // Evaluate if there are enought head of group for the groups quantity desired
 
+        
+        // Evaluate if there are enought head of group for the groups quantity desired
         if ((headsOfGroups.length < groupsQty) &&  (skillDesired !=='')) {
             confirmGroupsWithoutSkill(headsOfGroups, restOfParticipants, parseInt(groupsQty));
-            return([]);
-                      
+            return([]);                      
         } else{
             return distributeParticipants(headsOfGroups, restOfParticipants, parseInt(groupsQty)) ;       
-        }
-        //console.log(generateGroups);
-
-        
-        
+        }        
     }
 
     const handleChange = (ev) => {
         const { name, value } = ev.target;
-
         switch(name){
             case 'InstanceName':{
                 setInstanceName(value);
@@ -210,16 +203,18 @@ const ArmarGrupos = () =>{
                 break;
             }
         }
-      };
+    };
 
     const handleSubmit = (e) => {
-            e.preventDefault();
-            const groupsQty = (cantOf ==='groups')? cant: cantGroupsFromParticipants(Participants.length, cant);
-            setGroupsList(createGroups(Participants, groupsQty, skillSelected));
-           
+        e.preventDefault();
+        const groupsQty = (cantOf ==='groups')? cant: cantGroupsFromParticipants(Participants.length, cant);
+        setGroupsList(createGroups(Participants, groupsQty, skillSelected)); 
+        setGroupInfo({...groupInfo, 'name':instanceName, "groupsInfo": groupsList });
+        console.log("Info de todo", groupInfo)          
     }
 
-    const  confirmGroupsWithoutSkill = (headsOfGroups, restOfParticipants, groupsQty) => {//Funcion para usar sweet alert con boton de cancelar y de aceptar
+    //Funcion para usar sweet alert con boton de cancelar y de aceptar
+    const  confirmGroupsWithoutSkill = (headsOfGroups, restOfParticipants, groupsQty) => {
         MySwal.fire({
             title: 'No hay tantos integrantes con la habilidad deseada!',
             text: `Solo hay ${headsOfGroups.length} participantes con la habilidad seleccionada! \n Desea continuar de todas formas?`,
@@ -242,24 +237,24 @@ const ArmarGrupos = () =>{
 
     return(
         <div className="container">
-                <form>
-                    <div className="form-row">
-                        <h2>Crear Grupos</h2>
-                        <div className="col-md-4 mb-3">
+            <form>
+                <div className="form-row">
+                    <h2>Crear Grupos</h2>
+                    <div className="col-md-4 mb-3">
                         <label htmlFor="instanceName" >Nombre de la instancia/trabajo</label> 
-                            <input className="form-control" type="text" placeholder='Ej: Trabajo práctico 1, Práctica de maquetado, etc' id='instanceName'  name="InstanceName"  value={instanceName} onChange={handleChange} />
-                             </div>           
-                             <div className="col-md-4 mb-3">
+                        <input className="form-control" type="text" placeholder='Ej: Trabajo práctico 1, Práctica de maquetado, etc' id='instanceName'  name="InstanceName"  value={instanceName} onChange={handleChange} />
+                    </div>           
+                    <div className="col-md-4 mb-3">
                         <label htmlFor="cant">Cantidad de :</label>
                         <input  type="number" name="cant" id="cant" onChange={handleChange}  /> &nbsp;
                         <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" onChange={handleChange} name="cantOf" value={cantOf}>
                             <option value="groups">Grupos</option>
                             <option value="persons">Integrantes por grupo</option>
-                        </select>
-                        </div>
-                        <br />
-                        <h5>Seleccione que habilidad quiere distribuir en los grupos: </h5>
-                        <fieldset onChange={handleChange}>
+                         </select>
+                    </div>
+                    <br />
+                    <h5>Seleccione que habilidad quiere distribuir en los grupos: </h5>
+                    <fieldset onChange={handleChange}>
                         <input type="radio" key="skill_0" name="skillSelected" value=""  /> <span> Ninguna </span><br />
                         {
                             skills.map((skill) => { 
@@ -270,23 +265,20 @@ const ArmarGrupos = () =>{
                                 )                            
                             })
                         }
-                        </fieldset>
-                        <button className="btn btn-success" onClick={handleSubmit}> Generar grupos </button>
-                    </div> 
-                </form>
-                <div>  
-
-                </div>
-                {
-                    groupsList.map((CurrentGroup) => {                        
-                        return(
-                            <div className="card text-white bg-primary mb-3 mt-3" >
-                                <div className="card-header text-center">Grupo numero: {groupNumber++} </div>                                
-                                <DetalleGrupo group={CurrentGroup}  />
-                            </div>
-                        )
-                        })
-                }
+                    </fieldset>
+                    <button className="btn btn-success" onClick={handleSubmit}> Generar grupos </button>
+                </div> 
+            </form>
+            {
+                groupsList.map((CurrentGroup) => {                        
+                    return(
+                        <div className="card text-white bg-primary mb-3 mt-3" >
+                            <div className="card-header text-center">Grupo numero: {groupNumber++} </div>                                
+                            <DetalleGrupo group={CurrentGroup}  />
+                        </div>
+                    )
+                    })
+            }
         </div>
     )
 }
