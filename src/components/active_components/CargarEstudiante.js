@@ -57,14 +57,31 @@ const CargarEstudiante = () => {
             });
         }
     }
+    const handleChange = (e) => {
+        /* //console.log(e.target.name, e.target.value)
+        let value = e.target.value;
+        if (e.target.name === "author") {
+        value = value.split(",");
+    } */
+        setSkills({
+            ...skills,
+            [e.target.name]: [e.target.value, e.target.checked],
+
+        })
+
+
+    }
 
     useEffect(() => {//para traer las habilidades de firebase cada vez que se renderize el comonente
         getHabilidades();
     }, [])
-    console.log("skills",skills);
+
+
+    /* console.log(Object.keys(skills)); */
+    console.log(skills, nombre, email);
     return (
         <div className="estudiante-cont">
-            <form className="form-estudiante">
+            <form className="form-estudiante" onSubmit={addEstudiante}>
 
                 <label htmlFor="nombre">Nombre</label>
                 <input
@@ -94,12 +111,13 @@ const CargarEstudiante = () => {
                                 <label key={habilidad.id_db}>
                                     <input
                                         type='checkbox'
-                                        name="skills[]"
+                                        name={habilidad.habilidad.replace(/ /g, '').toLowerCase()}
                                         value={habilidad.habilidad}
-                                        onChange={(e) => setSkills({checked: e.target.checked, value: e.target.value})}
+                                        onChange={handleChange}
                                     />
                                     {habilidad.habilidad}
                                 </label>
+
                             )
                         })
                     }
