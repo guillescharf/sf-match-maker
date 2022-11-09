@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/guillescharf/sf-match-maker/static/css/main.bb8e38cf.css",
-    "main.js": "/guillescharf/sf-match-maker/static/js/main.f69d9db1.js",
-    "static/media/equipo.png": "/guillescharf/sf-match-maker/static/media/equipo.4d8e60845febbb5250df.png",
-    "index.html": "/guillescharf/sf-match-maker/index.html",
-    "main.bb8e38cf.css.map": "/guillescharf/sf-match-maker/static/css/main.bb8e38cf.css.map",
-    "main.f69d9db1.js.map": "/guillescharf/sf-match-maker/static/js/main.f69d9db1.js.map"
+    "main.css": "/sf-match-maker/static/css/main.bb8e38cf.css",
+    "main.js": "/sf-match-maker/static/js/main.0c2414f6.js",
+    "static/media/equipo.png": "/sf-match-maker/static/media/equipo.4d8e60845febbb5250df.png",
+    "index.html": "/sf-match-maker/index.html",
+    "main.bb8e38cf.css.map": "/sf-match-maker/static/css/main.bb8e38cf.css.map",
+    "main.0c2414f6.js.map": "/sf-match-maker/static/js/main.0c2414f6.js.map"
   },
   "entrypoints": [
     "static/css/main.bb8e38cf.css",
-    "static/js/main.f69d9db1.js"
+    "static/js/main.0c2414f6.js"
   ]
 }
