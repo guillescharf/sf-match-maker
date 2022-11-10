@@ -16,13 +16,13 @@ const Register = () => {
                     Password
                     <input type="password" placeholder='**********' id='password' />
                 </label>
-                <label className="label-title">
+                {/* <label className="label-title">
                     Role
                     <select id="role">
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>
-                </label>
+                </label> */}
                 <button type="submit">Register</button>
             </form>
         </div>

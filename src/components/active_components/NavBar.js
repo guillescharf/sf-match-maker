@@ -50,7 +50,7 @@ function NavBar() {
                                 </NavDropdown>
 
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Link className='route' to='/home'>Home</Link>
+                                    <Link className='route' to='/'>Home</Link>
                                     <Link className='route' to="/login">Login</Link>
                                     <Link className='route' to="register">Register</Link>
                                 </Nav>
