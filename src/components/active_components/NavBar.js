@@ -7,9 +7,14 @@ import { Link } from 'react-router-dom';
 import equipo from '../../assets/image/equipo.png'
 import '../../assets/stylesheets/active_components/NavBar.css';
 
+import firebaseApp from '../../Firebase/firebase';
+import { getAuth, signOut } from "firebase/auth";
+
 function NavBar() {
 
-
+    const auth = getAuth(firebaseApp);
+    /* Falta que usar context o redux-toolkit para traer el estado de usuario logeado 
+    y poder hacerle un render condicional a los componentes */
 
     return (
         <>
@@ -59,9 +64,10 @@ function NavBar() {
                                 </NavDropdown>
 
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Link className='route' to='/home'>Home</Link>
+                                    <Link className='route' to='/'>Home</Link>
                                     <Link className='route' to="/login">Login</Link>
                                     <Link className='route' to="register">Register</Link>
+                                    <button onClick={() => signOut(auth)}>Log out</button>
                                 </Nav>
 
                             </Offcanvas.Body>
