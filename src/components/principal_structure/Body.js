@@ -23,6 +23,7 @@ const Body = () => {
 
     onAuthStateChanged(auth, (userFromFirebase) => {
         userFromFirebase ? setUser(userFromFirebase) : setUser(null);
+        console.log(userFromFirebase);
     })
     
     return (
