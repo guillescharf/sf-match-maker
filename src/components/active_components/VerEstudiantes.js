@@ -81,30 +81,28 @@ const VerEstudiantes = () => {
                                 <div className='estudiante'>
                                     {estudiante.nombre}
                                     <div className='btn-delete-2'>
-                                        <IoIosTrash onClick={()=> confirmDeleteEstudiante(estudiante.id_db,estudiante.nombre)}/>
+                                        <IoIosTrash onClick={() => confirmDeleteEstudiante(estudiante.id_db, estudiante.nombre)} />
                                     </div>
                                 </div>
-                                <div className='skills'>
-                                    {
-                                        Object.keys(estudiante.skills).map((dat, index) => { //Aca mapeo las keys del objeto skills de cada estudiante, al ser dinamico mapeo la cantidad de keys para saber cuantos ciclos tiene la iteración, luego entro al array de cada key y valido si esta en true o false.
-                                            return (
 
-                                                <>
-                                                    {estudiante.skills[dat][1] && <div key={index} className='skill-listada'>{estudiante.skills[dat][0]}</div>} 
-                                                    {/* Para ver que habilidades tiene cada alumno se debe acceder al objeto skills, 
-                                                    mapear las keys (en cada estudiante hay diferente cantidad de keys en el objeto)
-                                                    y validar si la key[1] esta en true o false, si esta en false no tiene la habilidad pero se checkeo cuando se cargo
-                                                    y luego se le quito el check, si esta en true tiene esa habilidad */}
-                                                </>
-                                                
-                                            )
-                                        })
-                                    }
+                                <div className='skills'>
+                                    <p>{estudiante.skills.length != 0 ?
+                                        <div>
+                                            {estudiante.skills.map((skill) => {
+                                                return (
+                                                    <div className='skill-listada'>{skill}</div>
+                                                )
+                                            })}
+                                        </div>
+                                        :
+                                        <div className='no-skill'>Estudiante en aprendizaje, sin skills</div>}</p>
+
                                 </div>
                             </div>
                         )
                     })
                 }
+                
             </div>
         </div>
     )

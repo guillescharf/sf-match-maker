@@ -57,12 +57,8 @@ const CargarEstudiante = () => {
             });
         }
     }
-    const handleChange = (e) => {
-        /* //console.log(e.target.name, e.target.value)
-        let value = e.target.value;
-        if (e.target.name === "author") {
-        value = value.split(",");
-    } */
+   /*  const handleChange = (e) => {
+        
         setSkills({
             ...skills,
             [e.target.name]: [e.target.value, e.target.checked],
@@ -70,6 +66,16 @@ const CargarEstudiante = () => {
         })
 
 
+    } */
+
+    const handleChange = (e) => {
+        let newList = [];
+        if(e.target.checked){
+            newList = [...skills, e.target.value];
+        }else{
+            newList = skills.filter((item) => item !== e.target.value);
+        }
+        setSkills(newList)
     }
 
     useEffect(() => {//para traer las habilidades de firebase cada vez que se renderize el comonente
