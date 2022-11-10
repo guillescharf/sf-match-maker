@@ -44,7 +44,16 @@ function NavBar() {
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                                 >
-                                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link className='route' to='/armar-grupos'>Armar Grupos</Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link className='route' to='/cargar-estudiantes'>Cargar Estudiantes</Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link className='route' to='/armar-grupos'>Armar Grupos</Link>
+                                    </NavDropdown.Item>                                                                        
+
                                     <NavDropdown.Item href="#action4">
                                         Another action
                                     </NavDropdown.Item>
