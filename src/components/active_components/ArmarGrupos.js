@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DetalleGrupo from "./DetalleGrupo";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { db } from '../../Firebase/firebase'
+import { collection, getDocs, doc, addDoc } from 'firebase/firestore';
 
 const ArmarGrupos = () =>{
 
     const MySwal = withReactContent(Swal);
 
     // Datos hardcodeados para pruebas
-    const skills = [
+/*     const skills = [
         {
             "id": "001",
             "description": "Metodologías Ágiles",
@@ -21,8 +23,8 @@ const ArmarGrupos = () =>{
             "id": "003",
             "description": "Lógica de programación",
         }
-    ]
-    const Participants = [
+    ] */
+/*     const Participants = [
         {
             "id": "asd6a89s7d6asd86",
             "name": "nombre del 1",
@@ -65,14 +67,59 @@ const ArmarGrupos = () =>{
             "skills": []
 
         }
-    ]
-
+    ] */
+   
+    const [skills, setSkills] = useState([]);
+    const [participants, setParticipants] = useState([]);
     const [instanceName, setInstanceName] = useState('');
     const [cant, setCant] = useState(1);
     const [skillSelected, setSkillSelected] = useState('');
     const [cantOf, setCantOf] = useState('groups');
     const [groupInfo, setGroupInfo] = useState({});
     const [groupsList, setGroupsList] = useState([]);
+
+    const skillsCollection = collection(db, "habilidades");
+    const participantsCollection = collection(db, "estudiantes");
+    const groupsCollection = collection(db, "grupos");
+
+
+    /**
+    
+    * Get Skills from firebase DB
+   
+    * @return {state} Set the skills set with info obtained
+    
+    */
+    const getSkills = async () => {
+        const dataSkills = await getDocs(skillsCollection);
+
+        setSkills(
+            dataSkills.docs.map((doc) => {
+                return (
+                    { ...doc.data(), id_db: doc.id }
+                )
+            })
+        )
+    }    
+
+    /**
+    
+    * Get Participants from firebase DB
+   
+    * @return {state} Set the participants set with info obtained
+    
+    */
+     const getParticipants = async () => {
+        const dataParticipants = await getDocs(participantsCollection);
+
+        setParticipants(
+            dataParticipants.docs.map((doc) => {
+                return (
+                    { ...doc.data(), id_db: doc.id }
+                )
+            })
+        )
+    }        
 
     /**
     
@@ -205,11 +252,35 @@ const ArmarGrupos = () =>{
         }
     };
 
+    const addGroup = async () => {
+        try {
+            await addDoc(groupsCollection,
+                {
+                    groupInfo
+                });
+
+            MySwal.fire({
+                title: "Grupor cargado correctamente!",
+                text: "El grupete se agranda ;)",
+                icon: "success",
+                confirmButtonText: "Ok",
+            });
+        } catch (error) {
+            MySwal.fire({
+                title: "Error!",
+                text: "El estudiante no se pudo crear!",
+                icon: "error",
+                confirmButtonText: "Ok",
+            });
+        }
+    }    
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const groupsQty = (cantOf ==='groups')? cant: cantGroupsFromParticipants(Participants.length, cant);
-        setGroupsList(createGroups(Participants, groupsQty, skillSelected)); 
+        const groupsQty = (cantOf ==='groups')? cant: cantGroupsFromParticipants(participants.length, cant);        
+        setGroupsList(createGroups(participants, groupsQty, skillSelected)); 
         setGroupInfo({...groupInfo, 'name':instanceName, "groupsInfo": groupsList });
+        //addGroup();
         console.log("Info de todo", groupInfo)          
     }
 
@@ -233,7 +304,17 @@ const ArmarGrupos = () =>{
         })
     }    
 
+    useEffect(() => {//para traer las habilidades de firebase cada vez que se renderize el comonente
+        getSkills();
+        getParticipants();
+    }, [])    
+
+    useEffect(() => {//para traer las habilidades de firebase cada vez que se renderize el comonente
+        console.log("aca la info del grupo completa",groupInfo);
+    }, [groupInfo])       
+
     let groupNumber = 1;
+    //console.log(participants);
 
     return(
         <div className="container">
@@ -260,7 +341,7 @@ const ArmarGrupos = () =>{
                             skills.map((skill) => { 
                                 return(
                                     <>
-                                        <input type="radio" key={skill.id} name="skillSelected" value={skill.description} /> <span> {skill.description} </span><br />
+                                        <input type="radio" key={skill.id_db} name="skillSelected" value={skill.habilidad} /> <span> {skill.habilidad} </span><br />
                                     </>
                                 )                            
                             })
