@@ -29,7 +29,7 @@
 
 
 
-.skill-listada{
+.skill-listada, .no-skill{
     background-color: rgb(122, 0, 112);
     margin-bottom: 3px;
     
@@ -38,4 +38,9 @@
     padding-left: 5px;
     color: white;
     
+}
+
+.no-skill{
+    background-color: rgba(0, 255, 34, 0.507);
+    color: black;
 }
