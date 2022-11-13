@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-
 .navbar,
 .container-fluid {
     display: flex;
@@ -14,7 +13,7 @@
     justify-content: space-around;
     flex-direction: row;
     align-content: center;
-    
+    height: 10vh;
     background: -webkit-linear-gradient(rgb(96, 67, 14), rgb(250, 179, 191));
     background: -moz-linear-gradient(rgb(112, 74, 2), rgb(207, 145, 155));
     background: -o-linear-gradient(rgb(191, 126, 4), rgb(106, 100, 35));
@@ -42,4 +41,77 @@ span {
     font-size: 1.5rem;
     font-weight: 600;
     margin-right: .5em;
+}
+
+.loged-email{
+    color: orange;
+    font-weight: bold;
+    margin: 10px 0 0 8px;
+    
+    
+}
+.loged-email span{
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.cont-loged{
+    border: 3px solid orange;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    
+}
+.btn-log-out{
+    border: none;
+    width: 85px;
+    height: 35px;
+    margin: 10px 8px;
+}
+.inp-cn-text{
+    display: flex;
+    flex-direction: column;
+    color:rgb(207, 55, 0);
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+.mb-3{
+    margin-bottom: 0rem!important;
+    
+}
+
+.subm-btn{
+    border: none;
+    height: 35px;
+    width: 85px;
+    margin-top: 10px;
+    background-color: rgb(207, 55, 0);
+    font-weight: bold;
+    color: white;
+}
+.tit-nav{
+    margin-bottom: 5px;
+    background-color: rgb(252, 154, 62);
+    height: 30px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+.tit-pressed{
+    background-color: rgb(207, 55, 0);
+    color: white;
+    font-weight: bold;
+}
+.cont-login, .cont-register{
+    margin-top: 20px;
+}
+.inp-txt{
+    height: 45px;
+    padding: 5px;
+    border: none;
+    background-color: aliceblue;
+    border-top: 3px solid rgb(207, 55, 0);
 }

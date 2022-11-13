@@ -38,17 +38,17 @@ const Register = () => {
                 return userCredential;
 
             } catch (error) {
-                 MySwal.fire({
+                MySwal.fire({
                     title: "Error!",
                     text: "An error was ocurrió wachin!",
                     icon: "error",
                     confirmButtonText: "Ok",
-                }) 
+                })
                 /* no se por que no me toma la alerta 
                 cuando hay error de a la hora de registrar */
             }
 
-        
+
         })
         /* console.log("result", result);
         console.log("uid", result.user.uid); */
@@ -73,25 +73,28 @@ const Register = () => {
     {/* Podría hacerse con un formulario controlado con
     handleChange para mejorar eficiencia creo, despues se agrega */}
     return (
-        <div className='container'>
-            <h2>Register</h2>
+        <div className='register-cont'>
+
             <form onSubmit={handleSubmit}>
-                <label>Full Name
+                <label className="inp-cn-text">Full Name
                     <input
+                        className="inp-txt"
                         type="text"
                         placeholder='John Doe'
                         id='fullname' />
                 </label>
-                <label>
+                <label className="inp-cn-text">
                     Email
                     <input
+                        className="inp-txt"
                         type="email"
                         placeholder='john_doe@mail.com'
                         id='email' />
                 </label>
-                <label>
+                <label className="inp-cn-text">
                     Password
                     <input
+                        className="inp-txt"
                         type="password"
                         placeholder='**********'
                         id='password' />
@@ -103,7 +106,7 @@ const Register = () => {
                         <option value="user">Alumno</option>
                     </select>
                 </label> */}
-                <button type="submit">Register</button>
+                <button className="subm-btn" type="submit">Register</button>
             </form>
         </div>
     )

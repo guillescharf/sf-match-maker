@@ -9,12 +9,16 @@ import '../../assets/stylesheets/active_components/NavBar.css';
 
 import firebaseApp from '../../Firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
-
+import { useUserContext } from '../context/userContext';
+import Login from './login_components/Login';
+import Register from './login_components/Register';
+import { useState } from 'react';
 function NavBar() {
 
     const auth = getAuth(firebaseApp);
-    /* Falta que usar context o redux-toolkit para traer el estado de usuario logeado 
-    y poder hacerle un render condicional a los componentes */
+
+    const { user } = useUserContext();
+    const [logReg, setLogReg] = useState(true);
 
     return (
         <>
@@ -35,12 +39,12 @@ function NavBar() {
                         >
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    Actions
+
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
 
-                                <NavDropdown
+                                {/* <NavDropdown
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                                 >
@@ -61,13 +65,42 @@ function NavBar() {
                                     <NavDropdown.Item href="#action5">
                                         Something else here
                                     </NavDropdown.Item>
-                                </NavDropdown>
+                                </NavDropdown> */}
 
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Link className='route' to='/'>Home</Link>
-                                    <Link className='route' to="/login">Login</Link>
-                                    <Link className='route' to="register">Register</Link>
-                                    <button onClick={() => signOut(auth)}>Log out</button>
+                                    {
+                                        user ?
+                                            <>
+                                                <div className='cont-loged'>
+                                                    <p className='loged-email'>Loged at: <span className='sp-log'>{user.email}</span></p>
+                                                    <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>
+                                                </div>
+                                                <p className='tit-nav'>Profile</p>
+                                                <p className='tit-nav'>My Groups</p>
+                                                <p className='tit-nav'>Settings</p>
+                                            </>
+                                            :
+                                            <>
+
+                                                <div className='cont-login'>
+                                                    <p className={`tit-nav ${logReg && 'tit-pressed'}`} onClick={() => setLogReg(true)}>Login</p>
+                                                    {logReg &&
+                                                        <Login />
+                                                    }
+                                                </div>
+
+
+                                                <div className='cont-register'>
+                                                    <p className={`tit-nav ${!logReg && 'tit-pressed'}`} onClick={() => setLogReg(false)}>Register</p>
+                                                    {!logReg &&
+                                                        <Register />
+                                                    }
+                                                </div>
+
+                                            </>
+                                    }
+
+
                                 </Nav>
 
                             </Offcanvas.Body>
