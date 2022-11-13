@@ -12,11 +12,13 @@ import { getAuth, signOut } from "firebase/auth";
 import { useUserContext } from '../context/userContext';
 import Login from './login_components/Login';
 import Register from './login_components/Register';
+import { useState } from 'react';
 function NavBar() {
 
     const auth = getAuth(firebaseApp);
 
     const { user } = useUserContext();
+    const [logReg, setLogReg] = useState(true);
 
     return (
         <>
@@ -67,26 +69,37 @@ function NavBar() {
 
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     {
-                                        user &&
-                                        <div className='cont-loged'>
-                                            <p className='loged-email'>Loged at: <span className='sp-log'>{user.email}</span></p>
-                                            {user && <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>}
-                                        </div>
+                                        user ?
+                                            <>
+                                                <div className='cont-loged'>
+                                                    <p className='loged-email'>Loged at: <span className='sp-log'>{user.email}</span></p>
+                                                    <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>
+                                                </div>
+                                                <p className='tit-nav'>Profile</p>
+                                                <p className='tit-nav'>My Groups</p>
+                                                <p className='tit-nav'>Settings</p>
+                                            </>
+                                            :
+                                            <>
+
+                                                <div className='cont-login'>
+                                                    <p className={`tit-nav ${logReg && 'tit-pressed'}`} onClick={() => setLogReg(true)}>Login</p>
+                                                    {logReg &&
+                                                        <Login />
+                                                    }
+                                                </div>
+
+
+                                                <div className='cont-register'>
+                                                    <p className={`tit-nav ${!logReg && 'tit-pressed'}`} onClick={() => setLogReg(false)}>Register</p>
+                                                    {!logReg &&
+                                                        <Register />
+                                                    }
+                                                </div>
+
+                                            </>
                                     }
-                                    <Link className='route' to='/'>Home</Link>
-                                    
 
-                                    <div className='cont-login'>
-                                        <p>Login</p>
-                                        <Login/>
-                                    </div>
-
-                                    <div className='cont-register'>
-                                        <p>Register</p>
-                                        <Register/>
-                                    </div>
-                                    
-                                    
 
                                 </Nav>
 
