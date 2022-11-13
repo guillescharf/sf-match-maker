@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div className="footer-cont">
             <div>
-                <a href='https://www.linkedin.com/in/guillermoscharf/' target="_blank" rel="noreferrer">
+                <a href='https://www.linkedin.com/in/guillermoscharf/' target="_blank" rel="noreferrer">Guillermo Scharf
                     <FontAwesomeIcon className='icons' icon={faLinkedin} />
                 </a>
 
