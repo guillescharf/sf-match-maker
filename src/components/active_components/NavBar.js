@@ -9,12 +9,14 @@ import '../../assets/stylesheets/active_components/NavBar.css';
 
 import firebaseApp from '../../Firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
-
+import { useUserContext } from '../context/userContext';
+import Login from './login_components/Login';
+import Register from './login_components/Register';
 function NavBar() {
 
     const auth = getAuth(firebaseApp);
-    /* Falta que usar context o redux-toolkit para traer el estado de usuario logeado 
-    y poder hacerle un render condicional a los componentes */
+
+    const { user } = useUserContext();
 
     return (
         <>
@@ -35,12 +37,12 @@ function NavBar() {
                         >
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    Actions
+
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
 
-                                <NavDropdown
+                                {/* <NavDropdown
                                     title="Dropdown"
                                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                                 >
@@ -52,13 +54,31 @@ function NavBar() {
                                     <NavDropdown.Item href="#action5">
                                         Something else here
                                     </NavDropdown.Item>
-                                </NavDropdown>
+                                </NavDropdown> */}
 
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                                    {
+                                        user &&
+                                        <div className='cont-loged'>
+                                            <p className='loged-email'>Loged at: <span className='sp-log'>{user.email}</span></p>
+                                            {user && <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>}
+                                        </div>
+                                    }
                                     <Link className='route' to='/'>Home</Link>
-                                    <Link className='route' to="/login">Login</Link>
-                                    <Link className='route' to="register">Register</Link>
-                                    <button onClick={() => signOut(auth)}>Log out</button>
+                                    
+
+                                    <div className='cont-login'>
+                                        <p>Login</p>
+                                        <Login/>
+                                    </div>
+
+                                    <div className='cont-register'>
+                                        <p>Register</p>
+                                        <Register/>
+                                    </div>
+                                    
+                                    
+
                                 </Nav>
 
                             </Offcanvas.Body>

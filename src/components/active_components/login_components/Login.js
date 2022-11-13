@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <div className="login-cont">
       <form className="form-login" onSubmit={handleSubmit}>
-        <label>
+        <label className="inp-cn-text">
           E-mail:
           <input
             type="text"
@@ -33,7 +33,7 @@ const Login = () => {
             
           />
         </label>
-        <label>
+        <label className="inp-cn-text">
           Password:
           <input
             type="password"
@@ -43,7 +43,7 @@ const Login = () => {
         </label>
         <div>
           <input type="submit" value="log in" />
-          <Link to="/register"><p>Register</p></Link>
+          
         </div>
       </form>
     </div>

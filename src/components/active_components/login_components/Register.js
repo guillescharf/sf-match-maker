@@ -74,7 +74,7 @@ const Register = () => {
     handleChange para mejorar eficiencia creo, despues se agrega */}
     return (
         <div className='container'>
-            <h2>Register</h2>
+           
             <form onSubmit={handleSubmit}>
                 <label>Full Name
                     <input

@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import { useUserContext } from '../context/userContext';
+
 const MySwal = withReactContent(Swal);
 
 const VerEstudiantes = () => {
@@ -16,6 +18,8 @@ const VerEstudiantes = () => {
     const [estudiantes, setEstudiantes] = useState([]);
 
     const estudiantesCollection = collection(db, "estudiantes");
+
+    const { user } = useUserContext();
 
     const getEstudiantes = async () => {//funcion para setear estudiantes en el hook estudiantes con la info de firebase
         const dataEstudiantes = await getDocs(estudiantesCollection);
@@ -81,7 +85,10 @@ const VerEstudiantes = () => {
                                 <div className='estudiante'>
                                     {estudiante.nombre}
                                     <div className='btn-delete-2'>
-                                        <IoIosTrash onClick={() => confirmDeleteEstudiante(estudiante.id_db, estudiante.nombre)} />
+                                        {
+                                            user && 
+                                            <IoIosTrash onClick={() => confirmDeleteEstudiante(estudiante.id_db, estudiante.nombre)} />
+                                        }
                                     </div>
                                 </div>
 
@@ -102,7 +109,7 @@ const VerEstudiantes = () => {
                         )
                     })
                 }
-                
+
             </div>
         </div>
     )
