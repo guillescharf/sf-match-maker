@@ -8,7 +8,7 @@
 }
 
 .estudiante{
-    background-color: rgb(42, 42, 148);
+    background-color: #137fd9;
     color: white;
     font-weight: bold;
     height: 30px;
@@ -30,17 +30,17 @@
 
 
 .skill-listada, .no-skill{
-    background-color: rgb(122, 0, 112);
+    background-color: #ffc340;
     margin-bottom: 3px;
     
     margin-left: 15px;
     border-radius: 5px;
     padding-left: 5px;
-    color: white;
+    color: black;
     
 }
 
 .no-skill{
-    background-color: rgba(0, 255, 34, 0.507);
-    color: black;
+    background-color: rgba(255, 136, 0, 0.247);
+    color: #137fd9;
 }

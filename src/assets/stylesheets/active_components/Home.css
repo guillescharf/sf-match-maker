@@ -14,10 +14,11 @@
     height: 100%;
     border: none;
     border-radius: 6px;
-    background: -webkit-linear-gradient(rgb(32, 91, 105), rgb(143, 223, 15));
+   /*  background: -webkit-linear-gradient(rgb(32, 91, 105), rgb(143, 223, 15));
     background: -moz-linear-gradient(rgb(61, 121, 250), rgb(243, 247, 4));
     background: -o-linear-gradient(rgb(40, 61, 147), rgb(15, 197, 48));
-    background: linear-gradient(rgb(104, 70, 226), #83bf0a);
+    background: linear-gradient(rgb(104, 70, 226), #83bf0a); */
+    background-color: #137fd9;
     color: white;
 }
 

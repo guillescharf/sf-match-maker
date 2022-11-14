@@ -111,6 +111,7 @@ const CargarEstudiante = () => {
                 />
 
                 <div className='check-habilidades'>
+                    <p className='ini-hab'>Inicialice las habilidades</p>
                     {
                         habilidades?.map((habilidad) => {
                             return (
@@ -130,7 +131,7 @@ const CargarEstudiante = () => {
 
                 </div>
 
-                <a href="/"><button type='submit' className="bn632-hover bn19">Cargar</button></a>
+                <a href="/"><button type='submit' className="btn-cargar">Cargar</button></a>
             </form>
 
         </div>

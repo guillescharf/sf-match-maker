@@ -12,15 +12,15 @@ const Footer = () => {
                     <FontAwesomeIcon className='icons' icon={faLinkedin} />
                 </a>
 
-                <a href='https://www.linkedin.com/in/javieremanuelhuebra/' target="_blank" rel="noreferrer">
+                <a href='https://www.linkedin.com/in/javieremanuelhuebra/' target="_blank" rel="noreferrer">Javier Huebra
                     <FontAwesomeIcon className='icons' icon={faLinkedin} />
                 </a>
 
-                <a href='https://www.linkedin.com/in/rolando-ramon-duarte-93116b17a/' target="_blank" rel="noreferrer">
+                <a href='https://www.linkedin.com/in/rolando-ramon-duarte-93116b17a/' target="_blank" rel="noreferrer">Rolando Duarte
                     <FontAwesomeIcon className='icons' icon={faLinkedin} />
                 </a>
 
-                <a href='https://www.linkedin.com/in/emmanuel-enrique-mombelli-366764148/' target="_blank" rel="noreferrer">
+                <a href='https://www.linkedin.com/in/emmanuel-enrique-mombelli-366764148/' target="_blank" rel="noreferrer">Emanuel Mombelli
                     <FontAwesomeIcon className='icons' icon={faLinkedin} />
                 </a>
             </div>

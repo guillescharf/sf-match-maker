@@ -1,9 +1,10 @@
 .footer-cont{
     height: 20vh;
-    background: -webkit-linear-gradient(rgb(96, 67, 14), rgb(250, 179, 191));
+    /* background: -webkit-linear-gradient(rgb(96, 67, 14), rgb(250, 179, 191));
     background: -moz-linear-gradient(rgb(112, 74, 2), rgb(207, 145, 155));
     background: -o-linear-gradient(rgb(191, 126, 4), rgb(106, 35, 47));
-    background: linear-gradient(rgb(235, 215, 182), rgb(107, 28, 41));
+    background: linear-gradient(rgb(235, 215, 182), rgb(107, 28, 41)); */
+    background-color: #ff9800;
 }
 
 .icons {

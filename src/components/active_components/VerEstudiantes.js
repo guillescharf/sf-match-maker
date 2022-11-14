@@ -76,7 +76,7 @@ const VerEstudiantes = () => {
 
     return (
         <div className="estudiantes-cont">
-            <p>Curso: Skill Factory 2da Edicion</p>
+            <p>Estudiantes en Base de Datos</p>
             <div className='estudiantes-div'>
                 {
                     estudiantes?.map((estudiante) => { //Un map adentro del otro, primero mapeo los estudiantes, luego mapeo las keys del objeto skill porque son dinamicas
@@ -95,9 +95,9 @@ const VerEstudiantes = () => {
                                 <div className='skills'>
                                     <p>{estudiante.skills.length != 0 ?
                                         <div>
-                                            {estudiante.skills.map((skill) => {
+                                            {estudiante.skills.map((skill,index) => {
                                                 return (
-                                                    <div className='skill-listada'>{skill}</div>
+                                                    <div className='skill-listada' key={index}>{skill}</div>
                                                 )
                                             })}
                                         </div>

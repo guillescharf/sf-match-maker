@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
-import equipo from '../../assets/image/equipo.png'
+import logo from '../../assets/image/logo_match.png'
 import '../../assets/stylesheets/active_components/NavBar.css';
 
 import firebaseApp from '../../Firebase/firebase';
@@ -13,6 +13,7 @@ import { useUserContext } from '../context/userContext';
 import Login from './login_components/Login';
 import Register from './login_components/Register';
 import { useState } from 'react';
+import { IconName } from "react-icons/bi";
 function NavBar() {
 
     const auth = getAuth(firebaseApp);
@@ -22,18 +23,20 @@ function NavBar() {
 
     return (
         <>
-            {['lg'].map((expand) => (
-                <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+            {['xl'].map((expand) => (
+                <Navbar key={false} bg="light" expand={false} className="mb-3">
                     <Container fluid>
                         <Link to="/">
                             <Navbar.Brand href="#">
-                                <img src={equipo} alt="" className='logo' />
-                                <span>SF Match Maker</span>
+                                <div className='logo-container'>
+                                    <p className='text-logo'>Match</p>
+                                    <img className='logo-img' src={logo} />
+                                </div>
                             </Navbar.Brand>
                         </Link>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas
-                            id={`offcanvasNavbar-expand-${expand}`}
+                            id={`offcanvasNavbar-expand-${false}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="end"
                         >
@@ -72,7 +75,7 @@ function NavBar() {
                                         user ?
                                             <>
                                                 <div className='cont-loged'>
-                                                    <p className='loged-email'>Loged at: <span className='sp-log'>{user.email}</span></p>
+                                                    <p className='loged-email'>Loged as: <span className='sp-log'>{user.email}</span></p>
                                                     <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>
                                                 </div>
                                                 <p className='tit-nav'>Profile</p>
