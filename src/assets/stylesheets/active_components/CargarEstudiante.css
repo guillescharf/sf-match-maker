@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 70vh;
+    justify-content: center;
 }
 
 .form-estudiante {
@@ -12,29 +14,30 @@
     padding: 10px;
     border-radius: 16px;
     margin: 15px 0;
-    border: 4px solid blueviolet;
+    border: 4px solid #137fd9;
 }
 
 .est-text {
     height: 40px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.466);
-    border-top: 2px solid blueviolet;
+    border-top: 2px solid #137fd9;
     margin-bottom: 10px;
 
 }
 
-/* .btn-cargar{
+.btn-cargar{
     width: 40%;
     height: 40px;
     border-radius: 6px;
     border: none;
-    background-color: blueviolet;
+    background-color: #137fd9;
     color: white;
-} */
+    margin-top: 10px;
+} 
 
 
-.bn632-hover {
+/* .bn632-hover {
     width: 160px;
     font-size: 16px;
     font-weight: 600;
@@ -71,11 +74,11 @@
             #fa7199,
             #e85a19);
     box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
-}
+} */
 
 
 .form-estudiante label {
-    color: blueviolet;
+    color: #137fd9;
     font-weight: bold;
 }
 
@@ -87,4 +90,11 @@
 .check-habilidades{
     display: flex;
     flex-direction: column;
+}
+.ini-hab{
+    margin: 0;
+    background-color: #137fd9;
+    color: white;
+    margin-top: 10px;
+    padding-left: 15px;
 }
