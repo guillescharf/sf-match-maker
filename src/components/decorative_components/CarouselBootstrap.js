@@ -24,10 +24,7 @@ function CarouselBootstrap() {
           src={image2}
           alt="Second slide"
         />
-        <Carousel.Caption>
-         
-          
-        </Carousel.Caption>
+       
       </Carousel.Item>
       <Carousel.Item interval={1000}>
         <img
@@ -35,9 +32,7 @@ function CarouselBootstrap() {
           src={image3}
           alt="Third slide"
         />
-        <Carousel.Caption>
-         
-        </Carousel.Caption>
+        
       </Carousel.Item>
     </Carousel>
   );

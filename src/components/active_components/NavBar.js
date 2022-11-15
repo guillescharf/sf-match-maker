@@ -14,6 +14,7 @@ import Login from './login_components/Login';
 import Register from './login_components/Register';
 import { useState } from 'react';
 import { IconName } from "react-icons/bi";
+import Profile from './login_components/Profile';
 function NavBar() {
 
     const auth = getAuth(firebaseApp);
@@ -79,6 +80,7 @@ function NavBar() {
                                                     <button className='btn-log-out' onClick={() => signOut(auth)}>Log out</button>
                                                 </div>
                                                 <p className='tit-nav'>Profile</p>
+                                                <Profile/>
                                                 <p className='tit-nav'>My Groups</p>
                                                 <p className='tit-nav'>Settings</p>
                                             </>
